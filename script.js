@@ -9,7 +9,8 @@ var bCounter = 0;
 function onReady(){
     console.log('jQuery has been activated!');
     $('.color-button').on('click', cubeCreate);
-    $('body').on('click', '.color-cube', destroyCube);
+    // $('body').on('click', '.color-cube', destroyCube);
+    $('.container').on('click', '#deleteButton', destroyCube);
 
 }
 
@@ -31,21 +32,22 @@ function cubeCreate() {
         bCounter++;
         $('#blue').html(bCounter);
     }
+    $('div:last').append($('<button id="deleteButton">Remove</button>'));
 }
 
 function destroyCube() {
     console.log('destroyed!');
-    $(this).remove();                                   // destroy div
-    if ($(this).hasClass('red')) {                      // deterime color class of div
+    $(this).parent().remove();                                   // destroy div
+    if ($(this).parent().hasClass('red')) {                      // deterime color class of div
         rCounter--;                                     // lower counter
         $('#red').html(rCounter);                       // update counters
-    } else if ($(this).hasClass('yellow')) {
+    } else if ($(this).parent().hasClass('yellow')) {
         yCounter--;
         $('#yellow').html(yCounter);
-    } else if ($(this).hasClass('green')) {
+    } else if ($(this).parent().hasClass('green')) {
         gCounter--;
         $('#green').html(gCounter);
-    } else if ($(this).hasClass('blue')) {
+    } else if ($(this).parent().hasClass('blue')) {
         bCounter--;
         $('#blue').html(bCounter);
     }
